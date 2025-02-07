@@ -1,0 +1,182 @@
+<section class="py-5">
+    <div class="container ">
+        <section class="bg-white w-[80%] mx-auto border">
+            <div class="lg:grid lg:min-h-screen lg:grid-cols-12 ">
+
+              <section class="relative flex h-32 items-end bg-gray-900 lg:col-span-5 lg:h-full xl:col-span-6 overflow-hidden ">
+                <img
+                  alt=""
+                  src="/images/happy-woman-with-smartphone-min.jpg"
+                  class="absolute inset-0 h-full w-full object-cover opacity-80 "
+                />
+          
+                <div class="hidden lg:relative lg:block lg:p-12">
+                  <a class="block text-white" href="#">
+                    <span class="sr-only">Home</span>
+                  
+                  </a>
+          
+                  <h2 class="mt-6 text-2xl font-bold text-white sm:text-3xl md:text-4xl">
+                    Welcome to Our WebSite
+                  </h2>
+          
+                  <p class="mt-4 leading-relaxed text-white/90">
+                    Lorem, ipsum dolor sit amet consectetur adipisicing elit. Eligendi nam dolorum aliquam,
+                    quibusdam aperiam voluptatum.
+                  </p>
+                </div>
+              </section>
+              <main
+              class="flex items-center justify-center px-8 py-8 sm:px-12 lg:col-span-7 lg:px-16 lg:py-12 xl:col-span-6  bg-gray-50  "
+            >
+              <div class="max-w-xl lg:max-w-3xl">
+                <!-- <div class="relative -mt-16 block lg:hidden">
+                  <a
+                    class="inline-flex size-16 items-center justify-center rounded-full bg-white text-[#ef5589] sm:size-20"
+                    href="#"
+                  >
+                    <span class="sr-only">Home</span>
+                 
+                  </a>
+        
+                  <h1 class="mt-2 text-2xl font-bold text-gray-900 sm:text-3xl md:text-4xl">
+                    
+                    Welcome to Our WebSite
+                  </h1>
+        
+                  <p class="mt-4 leading-relaxed text-gray-500">
+                    Lorem, ipsum dolor sit amet consectetur adipisicing elit. Eligendi nam dolorum aliquam,
+                    quibusdam aperiam voluptatum.
+                  </p>
+                </div> -->
+                <img  class="mx-auto w-[35%]" src="/images/output-onlinepngtools.png" alt="">
+
+                
+                <form [formGroup]="loginForm" (ngSubmit)="submitForm()" class="mt-8 grid grid-cols-6 gap-6">
+               
+                  <div class="col-span-6">
+                    <label for="email" class="block text-sm font-medium text-gray-700"> Email </label>
+        
+                    <input
+                      formControlName="email"
+                      type="email"
+                      id="email"
+                      name="email"
+                      class="mt-1 w-full rounded-md border-gray-200 bg-white text-sm text-gray-700 shadow-xs"
+                    />
+                    @if(loginForm.get('email')?.errors && loginForm.get('email')?.touched){
+                      <div class="flex p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50" role="alert">
+                        <svg class="shrink-0 inline w-4 h-4 me-3 mt-[2px]" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+                          <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z"/>
+                        </svg>
+                        <div>
+                            <ul class="mt-1.5 list-disc list-inside">
+                              @if (loginForm.get('email')?.getError('required')) {
+                              <li>Email is required</li>
+                              }@else if (loginForm.get('email')?.getError('email')) {
+                                <li>Enter valid email</li>
+                              }
+                          </ul>
+                        </div>
+                      </div>
+                    }
+                  
+                  </div>
+
+           
+        
+                  <div class="col-span-6 sm:col-span-3">
+                    <label for="password" class="block text-sm font-medium text-gray-700"> Password </label>
+        
+                    <input
+                    formControlName="password"
+                      type="password"
+                      id="Password"
+                      name="password"
+                      class="mt-1 w-full rounded-md border-gray-200 bg-white text-sm text-gray-700 shadow-xs"
+                    />  
+                    @if(loginForm.get('password')?.errors && loginForm.get('password')?.touched){
+                      <div class="flex p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50" role="alert">
+                        <svg class="shrink-0 inline w-4 h-4 me-3 mt-[2px]" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+                          <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z"/>
+                        </svg>
+                        <div>
+                            <ul class="mt-1.5 list-disc list-inside">
+                              @if (loginForm.get('password')?.getError('required')) {
+                                <li>password is required</li>
+                              }@else if (loginForm.get('password')?.getError('pattern')) {
+                                <li>Enter valid password</li>
+                              }
+      
+                          </ul>
+                        </div>
+                      </div>
+                    }
+                  
+                  </div>
+        
+             
+               
+        
+                  <div class="col-span-6 sm:flex sm:items-center sm:gap-4">
+                    <!-- [disabled]="isLodaing || registerForm.invalid || errMsg" -->
+                    <button
+                    [disabled]="isLodaing"
+                    type="submit"
+                      class="inline-block shrink-0 disabled:bg-gray-700 disabled:border-[#252525] disabled:hover:text-[#fff] rounded-md btn-main1 border border-[#ef5589] bg-[#ef5589] px-12 py-3 text-sm font-medium text-white transition hover:bg-transparent hover:text-[#ef5589] focus:ring-3 focus:outline-hidden"
+                    >
+                      Sign In
+                      @if (isLodaing) {
+                        <span><i class="fas fa-spin fa-spinner"></i></span>
+                      }
+                      
+                    </button>
+                
+                  
+        
+                    <p class="mt-4 text-sm text-gray-500 sm:mt-0">
+                      Don't have an account?
+                      <a routerLink="/register"  class="text-gray-700 underline">Create an Account</a>.
+                    </p>
+                  </div>
+                  @if (errMsg) {
+                    <div class="col-span-6">
+                      <div class="flex p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50" role="alert">
+                        <svg class="shrink-0 inline w-4 h-4 me-3 mt-[2px]" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+                          <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z"/>
+                        </svg>
+                        <div>
+                            <ul class="mt-1.5 list-disc list-inside">
+                                <li>{{errMsg}}</li>
+                          </ul>
+                        </div>
+                      
+                      </div>
+                    </div>
+                    
+                  }
+                  @if (isSuccess) {
+                    <div class="col-span-6">
+                      <div class="flex p-4 mb-4 text-sm text-green-800 rounded-lg bg-green-300" role="alert">
+                        <svg class="shrink-0 inline w-4 h-4 me-3 mt-[2px]" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+                          <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z"/>
+                        </svg>
+                        <div>
+                            <ul class="mt-1.5 list-disc list-inside">
+                                <li>{{isSuccess}}</li>
+                          </ul>
+                        </div>
+                      
+                      </div>
+                    </div>
+                    }
+                 
+                </form>
+              </div>
+            </main>
+            </div>
+          </section>
+        
+    </div>
+</section>
+

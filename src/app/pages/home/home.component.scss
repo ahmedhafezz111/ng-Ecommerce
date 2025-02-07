@@ -1,0 +1,13 @@
+
+.card .addBtn{
+    
+    transition: all .5s;
+}
+.card .addBtn:hover button{
+    background-color: #fff !important;
+    color: #ef5589 !important;
+}
+
+.slide-item {
+    width: 100%;  /* Forces each slide to take full width */
+}
