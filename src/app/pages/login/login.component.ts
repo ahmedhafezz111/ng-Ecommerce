@@ -38,7 +38,15 @@ export class LoginComponent {
           if(res.message === "success"){ 
             
             setTimeout( ()=>{
-            this.router.navigate(["/home"])
+
+              //save token
+              localStorage.setItem('userToken',res.token)
+
+              //decode token
+              this.authService.saveUserData()
+
+              //navigate to home
+              this.router.navigate(["/home"])
               
             },500)
             this.isSuccess = res.message

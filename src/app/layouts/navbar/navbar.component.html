@@ -53,7 +53,7 @@
         }
       @else {
         <li>
-          <a role="button" class="block text-gray-900 py-2 px-3 rounded-sm  md:p-0" aria-current="page">logout</a>
+          <a role="button" class="block text-gray-900 py-2 px-3 rounded-sm  md:p-0" (click)="authService.logOut()" aria-current="page">logout</a>
         </li>
     
       }

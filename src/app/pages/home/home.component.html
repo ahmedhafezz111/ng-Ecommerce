@@ -1,28 +1,9 @@
-<section>
-    <div class="container mx-auto">
-        <owl-carousel-o [options]="mainslider">
-            <ng-template carouselSlide>
-                <div class="slide-item">
-                    <img src="/images/WhatsApp Image 2025-02-01 at 22.28.55.jpeg" 
-                         class="w-full h-[450px] object-cover rounded-xl" 
-                         alt="Shopping Guy">
-                </div>
-            </ng-template>  
-            <ng-template carouselSlide>
-                <div class="slide-item">
-                    <img src="/images/young-man-holding-shopping-bags-showing-mobile-phone-screen-money-application-standing-yell-min.jpg" 
-                         class="w-full h-[450px] object-center rounded-xl" 
-                         alt="Redhead Girl">
-                </div>
-            </ng-template>  
-            <ng-template carouselSlide>
-                <div class="slide-item">
-                    <img src="/images/young-asian-woman-sunglasses-going-shopping-holding-bags-from-malls-stores-smiling-standi-min.jpg" 
-                         class="w-full h-[450px] object-center rounded-xl" 
-                         alt="Redhead Girl">
-                </div>
-            </ng-template>  
-        </owl-carousel-o>
+<section class="home  " >
+    <div class="container mx-auto relative "  >
+        <div class="over-lay rounded-2xl"></div>
+        <div class="main-bg rounded-2xl">
+
+        </div>
     </div>
 </section>
 
@@ -52,16 +33,15 @@
     <div class="bg-white">
         <div class="mx-auto  px-4  sm:px-6 sm:py-12 lg:max-w-7xl lg:px-8">
           <h2 class="text-3xl font-bold tracking-tight text-[#ef5589] capitalize ">popular products</h2>
-      
           <div class="mt-6 grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8">
             @for (prod of products; track prod.id) {
-                <div class="card group relative border p-4 rounded-md  overflow-hidden">
-                    <img [src]="prod.imageCover" alt="Front of men&#039;s Basic Tee in black." class="aspect-square w-full rounded-md bg-gray-200 object-cover group-hover:opacity-75 lg:aspect-auto lg:h-80">
-                    <div class="mt-4 flex justify-between">
+                <div class="card group relative border p-4 rounded-md  overflow-hidden " >
+                    <img routerLink="/details"  [src]="prod.imageCover" alt="Front of men&#039;s Basic Tee in black." class="aspect-square w-full rounded-md bg-gray-200 object-cover group-hover:opacity-75 lg:aspect-auto lg:h-80">
+                    <div class="mt-4 flex justify-between"  >
                       <div>
                         <p class="mt-1 text-smt text-[#ef5589]">{{prod.category.name}}</p>
                         <h3 class=" text-sm font-medium text-gray-700">
-                          <a href="#">
+                          <a>
                             <span aria-hidden="true" class="absolute  inset-0"></span>
                             {{prod.title.split(" ",2).join(" ")}}
                           </a>
@@ -79,9 +59,13 @@
                     <button class="addBtn bg-[#ef5589] border-[#ef5589] text-white  rounded-md px-3 py-1 mt-[5px] "><span><i class="fa-solid fa-plus text-white"></i></span></button>
 
                     </div>
-                  
+                    
+                    <div class="absolute right-[20px] top-[20px] bg-gray-50 p-[8px] rounded-full shadow-xl shadow-gray-300 text-[#ef5589]">
+                    <span><i class="fa-solid fa-eye w-[100%] h-[100%]" [routerLink]="['/details', prod.id]"></i></span>
 
+                    </div>
                   </div>
+                  
             }
           
       
@@ -135,3 +119,27 @@
             </button>
         </div> -->
         
+<!-- 
+        <owl-carousel-o [options]="mainslider">
+            <ng-template carouselSlide>
+                <div class="slide-item">
+                    <img src="/images/WhatsApp Image 2025-02-01 at 22.28.55.jpeg" 
+                         class="w-full h-[450px] object-cover rounded-xl" 
+                         alt="Shopping Guy">
+                </div>
+            </ng-template>  
+            <ng-template carouselSlide>
+                <div class="slide-item">
+                    <img src="/images/young-man-holding-shopping-bags-showing-mobile-phone-screen-money-application-standing-yell-min.jpg" 
+                         class="w-full h-[450px] object-center rounded-xl" 
+                         alt="Redhead Girl">
+                </div>
+            </ng-template>  
+            <ng-template carouselSlide>
+                <div class="slide-item">
+                    <img src="/images/young-asian-woman-sunglasses-going-shopping-holding-bags-from-malls-stores-smiling-standi-min.jpg" 
+                         class="w-full h-[450px] object-center rounded-xl" 
+                         alt="Redhead Girl">
+                </div>
+            </ng-template>  
+        </owl-carousel-o> -->
