@@ -5,17 +5,23 @@ import { CategoriesService } from '../../core/services/categories/categories.ser
 import { ICategory } from '../../shared/interfaces/icategory';
 import { CarouselModule, OwlOptions } from 'ngx-owl-carousel-o';
 import { RouterLink } from '@angular/router';
+import { CurrencyPipe, DatePipe, JsonPipe, LowerCasePipe, SlicePipe, TitleCasePipe, UpperCasePipe } from '@angular/common';
+import { SalePipe } from '../../shared/pipes/sale/sale.pipe';
+import { TermtextPipe } from '../../shared/pipes/termtext/termtext.pipe';
+import { SearchPipe } from '../../shared/pipes/search/search.pipe';
+import { FormsModule } from '@angular/forms';
+import { CartService } from '../../core/services/cart/cart.service';
 
 
 @Component({
   selector: 'app-home',
-  imports: [CarouselModule,RouterLink ],
+  imports: [CarouselModule,FormsModule,RouterLink,SearchPipe ,CurrencyPipe,SalePipe ,TermtextPipe],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss'
 })
 export class HomeComponent implements OnInit {
 
-  
+  text:String = ""
 
   // mainslider: OwlOptions = {
   //   loop: true,
@@ -70,6 +76,7 @@ export class HomeComponent implements OnInit {
 // service injection for using api in home comp..
  private readonly productsService = inject(ProductsService)
  private readonly categoriesService = inject(CategoriesService)
+ private readonly cartService = inject(CartService)
 
 
   products:IProduct[]=[]
@@ -88,7 +95,7 @@ export class HomeComponent implements OnInit {
      })
   }
 
-  getCategoriesData(){
+  getCategoriesData():void{
     this.categoriesService.getAllCategories().subscribe({
       next:(res)=>{
         console.log(res.data);
@@ -101,6 +108,19 @@ export class HomeComponent implements OnInit {
         }
     })
    
+  }
+
+  addCartItem(id:string):void{
+    this.cartService.addProductToCart(id).subscribe({
+      next:(res)=>{
+        console.log(res);
+        
+      },
+      error:(err)=>{
+        console.log(err);
+        
+      }
+    })
   }
 
  ngOnInit(): void {

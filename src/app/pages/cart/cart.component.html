@@ -1,1 +1,66 @@
-<p>cart works!</p>
+<section class="bg-gray-100 py-12">
+    <div class="mx-auto max-w-6xl px-6 lg:px-8">
+      <div class="bg-white p-8 rounded-lg shadow-lg">
+        <header class="text-center mb-8">
+          <h1 class="text-4xl font-bold text-gray-900">Your Shopping Cart</h1>
+        </header>
+        
+        <div class="space-y-6">
+          <ul class="space-y-6">
+            @for (prod of cartDetails.products; track prod.product._id) {
+                <li class="flex items-center gap-6 bg-gray-50 p-6 rounded-lg shadow">
+                    <img
+                      [src]="prod.product.imageCover"
+                      alt="Basic Tee"
+                      class="w-24 h-24 rounded-lg object-cover"
+                    />
+        
+                    <div class="flex-1">
+                      <h3 class="text-lg font-semibold text-gray-900">{{prod.product.title}}</h3>
+                      <p class="text-sm text-gray-600">{{prod.product.category.name}}</p>
+                      <p class="text-md text-gray-900">{{prod.price | currency:"GBP"}}</p>
+                    <button (click)="removeItem(prod.product._id)" class="text-white bg-gray-600 p-1 rounded-md hover:bg-red-600 transition-all 0.5s" > <i class="fa-solid fa-trash-can px-1"></i>Remove Product</button>
+
+                    </div>
+        
+                    <div class="flex items-center gap-4">
+                      <button (click)="updateCount(prod.product._id , prod.count-1)" class="text-gray-600 hover:text-gray-900 text-xl"><i class="fa-solid fa-minus"></i></button>
+                      <div type="text" min="1" value="1" class="h-12 w-16 border rounded-lg text-center text-lg">
+                          {{prod.count}}
+                      </div>
+                      <button (click)="updateCount(prod.product._id , prod.count+1)" class="text-gray-600 hover:text-gray-900 text-xl"><i class="fa-solid fa-plus"></i></button>
+                      <button class="text-gray-600 hover:text-red-600 text-2xl"><i class="fa-regular fa-circle-xmark"></i></button>
+                    </div>
+                  </li>
+            }
+     
+          </ul>
+  
+          <div class="border-t pt-6">
+            <dl class="text-lg text-gray-700 space-y-2">
+              <div class="flex justify-between">
+                <dt>Subtotal</dt>
+                <dd class="font-semibold">£250</dd>
+              </div>
+              <div class="flex justify-between">
+                <dt>VAT</dt>
+                <dd class="font-semibold">£25</dd>
+              </div>
+              <div class="flex justify-between">
+                <dt>Discount</dt>
+                <dd class="font-semibold text-red-500">-£20</dd>
+              </div>
+              <div class="flex justify-between text-xl font-bold">
+                <dt>Total</dt>
+                <dd>{{cartDetails.totalCartPrice | currency :"GBP"}}</dd>
+              </div>
+            </dl>
+          </div>
+  
+          <div class="flex justify-end">
+            <a href="#" class="bg-gray-900 text-white px-6 py-3 rounded-lg text-lg hover:bg-gray-700">Proceed to Checkout</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>

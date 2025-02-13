@@ -16,7 +16,7 @@
             @for (categ of categories; track categ._id) {
                 <ng-template carouselSlide >
                     <div >
-                        <img [src]="categ.image" class="w-full h-[300px] object-cover rounded-md" alt="">
+                        <img [src]="categ.image" class="w-full h-[300px] object-cover " alt="">
                         <h3 class="capitalize text-[#ef5589] text-center">{{categ.name}}</h3>
                     </div>
                   </ng-template>
@@ -31,37 +31,71 @@
 
 <section>
     <div class="bg-white">
+
         <div class="mx-auto  px-4  sm:px-6 sm:py-12 lg:max-w-7xl lg:px-8">
+
+            <div class="relative mb-5">
+                <label for="Search" class="sr-only"> Search </label>
+            
+                <input
+                [(ngModel)]="text"
+                type="text"
+                id="Search"
+                placeholder="Search for..."
+                class="w-full rounded-md border-gray-200 py-2.5 pe-10 shadow-xs sm:text-sm"
+                />
+            
+                <span class="absolute inset-y-0 end-0 grid w-10 place-content-center">
+                <button type="button" class="text-gray-600 hover:text-gray-700">
+                    <span class="sr-only">Search</span>
+            
+                    <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke-width="1.5"
+                    stroke="currentColor"
+                    class="size-4"
+                    >
+                    <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z"
+                    />
+                    </svg>
+                </button>
+                </span>
+            </div>
           <h2 class="text-3xl font-bold tracking-tight text-[#ef5589] capitalize ">popular products</h2>
           <div class="mt-6 grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8">
-            @for (prod of products; track prod.id) {
+            @for (prod of products  | search:text;  track prod.id) {
                 <div class="card group relative border p-4 rounded-md  overflow-hidden " >
                     <img routerLink="/details"  [src]="prod.imageCover" alt="Front of men&#039;s Basic Tee in black." class="aspect-square w-full rounded-md bg-gray-200 object-cover group-hover:opacity-75 lg:aspect-auto lg:h-80">
                     <div class="mt-4 flex justify-between"  >
                       <div>
-                        <p class="mt-1 text-smt text-[#ef5589]">{{prod.category.name}}</p>
+                        <p class="mt-1 text-smt text-[#ef5589]">{{prod.category.name }}</p>
                         <h3 class=" text-sm font-medium text-gray-700">
                           <a>
-                            <span aria-hidden="true" class="absolute  inset-0"></span>
-                            {{prod.title.split(" ",2).join(" ")}}
+                            <!-- <span aria-hidden="true" class="absolute  inset-0"></span> -->
+                            {{prod.title |termtext : 2}}
                           </a>
                         </h3>
                       </div>
                      
 
                     </div>
-                    <span class=" ">{{prod.ratingsAverage}}<i class="fa-solid fa-star text-yellow-400 p-[5px]"></i></span>
+                    <span >{{prod.ratingsAverage}}<i class="fa-solid fa-star text-yellow-400 p-[5px]"></i></span>
 
                     <div class="flex justify-between items-center">
-                        <p class="text-sm font-medium text-gray-900 text-[18px]">{{prod.price}}
-                            <span>EGP</span>
+                        <p class="text-sm font-medium text-gray-900 text-[18px]">{{prod.price | currency :"EUR"}}
+                          
                         </p>
-                    <button class="addBtn bg-[#ef5589] border-[#ef5589] text-white  rounded-md px-3 py-1 mt-[5px] "><span><i class="fa-solid fa-plus text-white"></i></span></button>
+                    <button (click)="addCartItem(prod.id)" class="addBtn cursor-pointer bg-[#ef5589] border-[#ef5589] text-white  rounded-md px-3 py-1 mt-[5px] "><span><i class="fa-solid fa-plus text-white"></i></span></button>
 
                     </div>
                     
                     <div class="absolute right-[20px] top-[20px] bg-gray-50 p-[8px] rounded-full shadow-xl shadow-gray-300 text-[#ef5589]">
-                    <span><i class="fa-solid fa-eye w-[100%] h-[100%]" [routerLink]="['/details', prod.id]"></i></span>
+                    <span><i class="fa-solid fa-eye w-[100%] h-[100%] cursor-pointer" [routerLink]="['/details', prod.id]"></i></span>
 
                     </div>
                   </div>

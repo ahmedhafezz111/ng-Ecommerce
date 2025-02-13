@@ -137,8 +137,15 @@
                     <p class="mt-4 text-sm text-gray-500 sm:mt-0">
                       Don't have an account?
                       <a routerLink="/register"  class="text-gray-700 underline">Create an Account</a>.
+                      <br>
+                     forget password?
+                      <a routerLink="/forget"  class="text-gray-700 underline">Change Password</a>.
                     </p>
+              
+                    
                   </div>
+                
+           
                   @if (errMsg) {
                     <div class="col-span-6">
                       <div class="flex p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50" role="alert">
@@ -175,7 +182,9 @@
               </div>
             </main>
             </div>
+            
           </section>
+          
         
     </div>
 </section>

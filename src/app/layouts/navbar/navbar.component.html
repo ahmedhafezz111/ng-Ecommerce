@@ -18,9 +18,9 @@
           <li>
             <a routerLink="/products"  routerLinkActive=" active   font-medium" class="block text-gray-900 py-2 px-3 rounded-sm  md:p-0" aria-current="page">products</a>
           </li>
-          <li>
+          <!-- <li>
             <a routerLink="/cart"  routerLinkActive=" active   font-medium " class="block text-gray-900 py-2 px-3 rounded-sm  md:p-0" aria-current="page">cart</a>
-          </li>
+          </li> -->
           <li>
             <a routerLink="/categories"  routerLinkActive=" active   font-medium " class="block text-gray-900 py-2 px-3 rounded-sm  md:p-0" aria-current="page">categories</a>
           </li>
@@ -32,16 +32,6 @@
       }
   
       <ul class="capitalize ms-auto items-center flex flex-col p-4 md:p-0 mt-4 border border-gray-100 rounded-lg md:flex-row md:space-x-6 rtl:space-x-reverse md:mt-0 md:border-0">
-        <li>
-          <a href="#" class="block text-gray-900 py-2 px-3 rounded-sm  md:p-0" aria-current="page">
-            <i class="fa-brands fa-facebook px-2 "></i>
-            <i class="fa-brands fa-linkedin-in px-2"></i>
-            <i class="fa-brands fa-tiktok px-2"></i>
-            <i class="fa-brands fa-youtube px-2"></i>
-            <i class="fa-brands fa-instagram px-2"></i>
-            
-          </a>
-        </li>
         @if(!isLoggedIn()){
           <li>
             <a routerLink="/login"  routerLinkActive=" active  font-medium" class="block text-gray-900 py-2 px-3 rounded-sm  md:p-0" aria-current="page">login</a>
@@ -52,6 +42,17 @@
          
         }
       @else {
+        <li>
+          <a  class="block text-gray-900 py-2 px-3 rounded-sm  md:p-0" aria-current="page">
+            <!-- <i class="fa-brands fa-facebook px-2 "></i>
+            <i class="fa-brands fa-linkedin-in px-2"></i>
+            <i class="fa-brands fa-tiktok px-2"></i>
+            <i class="fa-brands fa-youtube px-2"></i>
+            <i class="fa-brands fa-instagram px-2"></i>
+             -->
+             <i routerLink="/cart" routerLinkActive="text-[#ef5589]   " class="fa-solid fa-cart-shopping text-lg p-[4px] shadow-lg  border w-8 h-8 text-center rounded-full"></i>
+          </a>
+        </li>
         <li>
           <a role="button" class="block text-gray-900 py-2 px-3 rounded-sm  md:p-0" (click)="authService.logOut()" aria-current="page">logout</a>
         </li>
