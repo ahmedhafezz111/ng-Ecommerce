@@ -35,9 +35,7 @@
               "./node_modules/ngx-spinner/animations/ball-scale-multiple.css",
               "./node_modules/ngx-spinner/animations/cube-transition.css",
               "./node_modules/@fortawesome/fontawesome-free/css/all.min.css",
-              "node_modules/ngx-owl-carousel-o/lib/styles/scss/owl.carousel.scss",
-              "node_modules/ngx-owl-carousel-o/lib/styles/scss/owl.theme.default.scss",
-              "node_modules/ngx-toastr/toastr.css",
+              
               "src/styles.scss"
             ],
             "scripts": [
