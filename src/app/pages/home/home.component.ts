@@ -11,11 +11,13 @@ import { TermtextPipe } from '../../shared/pipes/termtext/termtext.pipe';
 import { SearchPipe } from '../../shared/pipes/search/search.pipe';
 import { FormsModule } from '@angular/forms';
 import { CartService } from '../../core/services/cart/cart.service';
+import { ToastrService } from 'ngx-toastr';
+import { NgxSpinner, NgxSpinnerService } from 'ngx-spinner';
 
 
 @Component({
   selector: 'app-home',
-  imports: [CarouselModule,FormsModule,RouterLink,SearchPipe ,CurrencyPipe,SalePipe ,TermtextPipe],
+  imports: [CarouselModule,FormsModule,RouterLink,SearchPipe ,CurrencyPipe ,TermtextPipe],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss'
 })
@@ -77,6 +79,8 @@ export class HomeComponent implements OnInit {
  private readonly productsService = inject(ProductsService)
  private readonly categoriesService = inject(CategoriesService)
  private readonly cartService = inject(CartService)
+ private readonly toastrService = inject(ToastrService)
+ private readonly ngxSpinnerService = inject(NgxSpinnerService)
 
 
   products:IProduct[]=[]
@@ -101,9 +105,8 @@ export class HomeComponent implements OnInit {
         console.log(res.data);
         this.categories=res.data
         
-        },
-        error:(err)=>{
-        console.log(err);
+        },error:()=>{
+      this.ngxSpinnerService.hide('loading-2')
 
         }
     })
@@ -114,6 +117,7 @@ export class HomeComponent implements OnInit {
     this.cartService.addProductToCart(id).subscribe({
       next:(res)=>{
         console.log(res);
+        this.toastrService.success(res.message,'Fresh Cart')
         
       },
       error:(err)=>{

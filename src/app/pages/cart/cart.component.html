@@ -1,4 +1,5 @@
-<section class="bg-gray-100 py-12">
+@if (cartDetails.totalCartPrice) {
+  <section class="bg-gray-100 py-12">
     <div class="mx-auto max-w-6xl px-6 lg:px-8">
       <div class="bg-white p-8 rounded-lg shadow-lg">
         <header class="text-center mb-8">
@@ -29,7 +30,6 @@
                           {{prod.count}}
                       </div>
                       <button (click)="updateCount(prod.product._id , prod.count+1)" class="text-gray-600 hover:text-gray-900 text-xl"><i class="fa-solid fa-plus"></i></button>
-                      <button class="text-gray-600 hover:text-red-600 text-2xl"><i class="fa-regular fa-circle-xmark"></i></button>
                     </div>
                   </li>
             }
@@ -40,27 +40,34 @@
             <dl class="text-lg text-gray-700 space-y-2">
               <div class="flex justify-between">
                 <dt>Subtotal</dt>
-                <dd class="font-semibold">£250</dd>
+                <dd class="font-semibold">{{(cartDetails.totalCartPrice) | currency :"GBP"}}</dd>
               </div>
               <div class="flex justify-between">
                 <dt>VAT</dt>
                 <dd class="font-semibold">£25</dd>
               </div>
-              <div class="flex justify-between">
+              <!-- <div class="flex justify-between">
                 <dt>Discount</dt>
                 <dd class="font-semibold text-red-500">-£20</dd>
-              </div>
+              </div> -->
               <div class="flex justify-between text-xl font-bold">
                 <dt>Total</dt>
-                <dd>{{cartDetails.totalCartPrice | currency :"GBP"}}</dd>
+                <dd>{{(cartDetails.totalCartPrice)+25 | currency :"GBP"}}</dd>
               </div>
             </dl>
           </div>
   
           <div class="flex justify-end">
-            <a href="#" class="bg-gray-900 text-white px-6 py-3 rounded-lg text-lg hover:bg-gray-700">Proceed to Checkout</a>
+            @if (cartDetails.totalCartPrice !== 0) {
+              <button (click)="clearCartData()" role="button" class="bg-red-700 text-white px-6 py-3 rounded-lg text-lg mx-[8px] hover:bg-red-900">Clear Cart</button>
+            }
+            <a role="button" [routerLink]="['/checkout', cartDetails._id]" class="bg-gray-900 text-white px-6 py-3 rounded-lg text-lg hover:bg-gray-700">Proceed to Checkout</a>
           </div>
         </div>
       </div>
     </div>
   </section>
+
+}@else {
+  <h1 class="text-3xl text-center text-red-900">Not Data Found</h1>
+}

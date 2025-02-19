@@ -2,10 +2,11 @@ import { Component, inject, OnInit } from '@angular/core';
 import { CartService } from '../../core/services/cart/cart.service';
 import { ICart } from '../../shared/interfaces/icart';
 import { CurrencyPipe } from '@angular/common';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-cart',
-  imports: [CurrencyPipe],
+  imports: [CurrencyPipe,RouterLink],
   templateUrl: './cart.component.html',
   styleUrl: './cart.component.scss'
 })
@@ -45,6 +46,21 @@ export class CartComponent implements OnInit {
       next:(res)=>{
         console.log(res);
         this.cartDetails = res.data
+        
+      },error:(err)=>{
+        console.log(err);
+        
+      }
+    })
+  }
+
+  clearCartData():void{
+    this.cartService.clearCart().subscribe({
+      next:(res)=>{
+        console.log(res);
+        if(res.message === 'success'){
+          this.cartDetails = { } as ICart
+        }
         
       },error:(err)=>{
         console.log(err);

@@ -27,7 +27,7 @@ export const routes: Routes = [
             { path: "brands", loadComponent: () => import("./pages/brands/brands.component").then(c => c.BrandsComponent), title: "Brands" },
             { path: "categories", loadComponent: () => import("./pages/categories/categories.component").then(c => c.CategoriesComponent), title: "Categories" },
             { path: "details/:id", loadComponent:()=> import("./pages/details/details.component").then(c=>c.DetailsComponent),title:"Details" },
-            { path: "checkout", loadComponent: () => import("./pages/checkout/checkout.component").then(c => c.CheckoutComponent), title: "Checkout" },
+            { path: "checkout/:id", loadComponent: () => import("./pages/checkout/checkout.component").then(c => c.CheckoutComponent), title: "Checkout" },
             { path: "**", loadComponent: () => import("./pages/notfound/notfound.component").then(c => c.NotfoundComponent), title: "Not Found" }
         ]
     }

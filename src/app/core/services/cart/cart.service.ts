@@ -16,32 +16,20 @@ export class CartService {
     {
       "productId": id
     },
-    {
-      headers:{
-        token: this.myToken
-      }
-    }
+   
    
   )
   }
 
   getLoggedUserCart():Observable<any>{
     return this.httpClient.get(environment.baseUrl + `/api/v1/cart` ,
-      {
-        headers:{
-          token:this.myToken
-        }
-      }
+    
     )
   }
 
   removeSpecificCartItem(id:string):Observable<any>{
     return this.httpClient.delete(environment.baseUrl+`/api/v1/cart/${id}`,
-      {
-        headers:{
-          token:this.myToken
-        }
-      }
+    
     )
 
  
@@ -52,14 +40,15 @@ export class CartService {
       {
         count:newCount
       },
-      {
-        headers:{
-          token:this.myToken
-        }
-      }
+    
     )
 
  
   }
 
+  clearCart():Observable<any>{
+    return this.httpClient.delete(environment.baseUrl+`/api/v1/cart`,
+    
+    )
+  }
 }
