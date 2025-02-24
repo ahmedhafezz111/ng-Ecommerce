@@ -1,6 +1,7 @@
-import { Component, inject, input } from '@angular/core';
+import { Component, inject, input, OnInit } from '@angular/core';
 import { RouterLink, RouterLinkActive } from '@angular/router';
 import { AuthService } from '../../core/services/auth/auth.service';
+import { CartService } from '../../core/services/cart/cart.service';
 
 
 @Component({
@@ -9,7 +10,24 @@ import { AuthService } from '../../core/services/auth/auth.service';
   templateUrl: './navbar.component.html',
   styleUrl: './navbar.component.scss'
 })
-export class NavbarComponent {
+export class NavbarComponent implements OnInit{
+  private readonly cartService = inject(CartService)
+
+  cartCount !: number
+  ngOnInit(): void {
+   this.cartService.cartNumber.subscribe({
+    next:(value)=>{
+        this.cartCount = value
+    }
+   })
+
+   this.cartService.getLoggedUserCart().subscribe({
+    next:(res)=>{
+      this.cartService.cartNumber.next(res.numOfCartItems)
+    }
+   })
+  }
+
 
   isLoggedIn = input<boolean>(true)
    readonly authService = inject(AuthService)

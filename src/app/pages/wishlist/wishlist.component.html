@@ -1,0 +1,42 @@
+
+    <section class="bg-gray-100 py-12">
+        <div class="mx-auto max-w-6xl px-6 lg:px-8">
+          <div class="bg-white p-8 rounded-lg shadow-lg">
+            <header class="text-center mb-8">
+              <h1 class="text-4xl font-bold text-gray-900">Your Wishlist</h1>
+            </header>
+            
+            <div class="space-y-6">
+              <ul class="space-y-6">
+                @for (prod of wishlistItems; track prod.id) {
+                    <li class="flex items-center gap-6 bg-gray-50 p-6 rounded-lg shadow">
+                        <img
+                          [src]="prod.imageCover"
+                          alt="Product Image"
+                          class="w-24 h-24 rounded-lg object-cover"
+                        />
+            
+                        <div class="flex-1">
+                          <h3 class="text-lg font-semibold text-gray-900">{{prod.title}}</h3>
+                          <p class="text-sm text-gray-600">{{prod.category.name}}</p>
+                          <p class="text-md text-gray-900">{{prod.price | currency:"GBP"}}</p>
+                        </div>
+            
+                        <div class="flex items-center gap-4">
+                          <button (click)="removeFromWishlist(prod.id)" class="text-white bg-gray-600 p-1 rounded-md hover:bg-red-600 transition-all 0.5s">
+                            <i class="fa-solid fa-trash-can px-1"></i> Remove Product
+                          </button>
+                          <button (click)="addToCart(prod._id)" class="text-white bg-green-600 p-1 rounded-md hover:bg-green-800 transition-all 0.5s">
+                            <i class="fa-solid fa-cart-plus px-1"></i> Add to Cart
+                          </button>
+                        </div>
+                    </li>
+                }
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+  
+
+   

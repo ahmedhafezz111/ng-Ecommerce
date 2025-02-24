@@ -1,9 +1,19 @@
 <section class="home  " >
     <div class="container mx-auto relative "  >
         <div class="over-lay rounded-2xl"></div>
-        <div class="main-bg rounded-2xl">
+        <div class="main-bg rounded-2xl flex justify-start items-start p-[32px] ">
+            <div class="content  z-10">
+                <h1 class="text-white text-c text-[60px] font-bold"><span class="text-[#ef5589]">Welcome</span> 
+                    To 
+                    <br>
+                    <span class="text-[68px]">Fresh Cart</span></h1>
+                <h3 class="text-white text-[18px] font-medium">Lorem ipsum dolor sit amet consectetur adipisicing elit.</h3>
+                <button class="p-[8px] bg-[#ef5589] text-white rounded-md text-xl mt-3">Continue</button>
+            </div>
+          
 
         </div>
+        
     </div>
 </section>
 
@@ -81,16 +91,20 @@
                           </a>
                         </h3>
                       </div>
+                   
+                    <button (click)="addToWishlist(prod.id,$event)" [ngClass]="{'text-red-700': wishlistItems.includes(prod.id)}"  #heart class="addBtn cursor-pointer text-[#ef5589]   px-3  border rounded-md "><span><i class="fa-solid fa-heart text-lg"></i></span></button>
                      
 
                     </div>
                     <span >{{prod.ratingsAverage}}<i class="fa-solid fa-star text-yellow-400 p-[5px]"></i></span>
 
                     <div class="flex justify-between items-center">
+                        
                         <p class="text-sm font-medium text-gray-900 text-[18px]">{{prod.price | currency :"EUR"}}
                           
                         </p>
-                    <button (click)="addCartItem(prod.id)" class="addBtn cursor-pointer bg-[#ef5589] border-[#ef5589] text-white  rounded-md px-3 py-1 mt-[5px] "><span><i class="fa-solid fa-plus text-white"></i></span></button>
+                        
+                    <button id="test" (click)="addCartItem(prod.id)"    class="addBtn cursor-pointer bg-[#ef5589] border-[#ef5589] text-white  rounded-md px-3 py-1 mt-[5px] "><span><i  class="fa-solid fa-plus text-white"></i></span></button>
 
                     </div>
                     

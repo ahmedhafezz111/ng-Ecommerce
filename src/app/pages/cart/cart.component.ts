@@ -33,6 +33,7 @@ export class CartComponent implements OnInit {
       next:(res)=>{
         console.log(res);
         this.cartDetails = res.data
+        this.cartService.cartNumber.next(res.numOfCartItems)
         
       },error:(err)=>{
         console.log(err);
@@ -60,6 +61,7 @@ export class CartComponent implements OnInit {
         console.log(res);
         if(res.message === 'success'){
           this.cartDetails = { } as ICart
+          this.cartService.cartNumber.next(0)
         }
         
       },error:(err)=>{
