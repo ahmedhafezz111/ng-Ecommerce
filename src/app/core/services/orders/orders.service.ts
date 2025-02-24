@@ -12,7 +12,7 @@ export class OrdersService {
 
 
   checkoutPayment(id:string , data:object):Observable<any>{
-    return this.httpClient.post(environment.baseUrl+`/api/v1/orders/checkout-session/${id}?url=https://ng-ecommerce-ten.vercel.app/`,
+    return this.httpClient.post(environment.baseUrl+`/api/v1/orders/checkout-session/${id}?url=https://ng-ecommerce-ten.vercel.app/home`,
       {
         "shippingAddress":data
       },
