@@ -121,7 +121,7 @@ private readonly wishlistService = inject(WishlistService)
       next:(res)=>{
         console.log(res);
         this.toastrService.success(res.message,'Fresh Cart')
-        this.cartService.cartNumber.next(res.numOfCartItems) 
+        this.cartService.cartNumber.set(res.numOfCartItems)
         
       },
       error:(err)=>{

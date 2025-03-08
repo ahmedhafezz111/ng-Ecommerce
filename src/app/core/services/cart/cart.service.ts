@@ -1,6 +1,6 @@
 import { BehaviorSubject, Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { Injectable, signal, WritableSignal } from '@angular/core';
 import { environment } from '../../environments/environments';
 
 @Injectable({
@@ -8,7 +8,7 @@ import { environment } from '../../environments/environments';
 })
 export class CartService {
 
-  cartNumber  : BehaviorSubject<number> = new BehaviorSubject(0)
+  cartNumber  : WritableSignal<number> = signal(0)
 
   myToken:any = localStorage.getItem("userToken") !
   constructor(private httpClient:HttpClient) { }
