@@ -18,5 +18,7 @@ export class AppComponent implements OnInit {
       // Your custom code here
       console.log('Flowbite loaded', flowbite);
     });
+
+    
   }
 }
