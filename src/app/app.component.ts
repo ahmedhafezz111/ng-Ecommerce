@@ -3,6 +3,8 @@ import { RouterOutlet } from '@angular/router';
 import { FlowbiteService } from './core/services/flowbite/flowbite.service';
 import { HomeComponent } from "./pages/home/home.component";
 import { NgxSpinnerComponent } from 'ngx-spinner';
+import { isPlatformBrowser } from '@angular/common';
+import { Inject, PLATFORM_ID } from '@angular/core';
 
 @Component({
   selector: 'app-root',
@@ -11,14 +13,19 @@ import { NgxSpinnerComponent } from 'ngx-spinner';
   styleUrl: './app.component.scss'
 })
 export class AppComponent implements OnInit {
-  constructor(private flowbiteService: FlowbiteService) {}
+  constructor(
+    private flowbiteService: FlowbiteService,
+    @Inject(PLATFORM_ID) private platformId: Object
+  ) {}
 
   ngOnInit(): void {
-    this.flowbiteService.loadFlowbite(flowbite => {
-      // Your custom code here
-      console.log('Flowbite loaded', flowbite);
-    });
-
-    
+    if (isPlatformBrowser(this.platformId)) {
+      setTimeout(() => {
+        this.flowbiteService.loadFlowbite(flowbite => {
+          console.log('Flowbite loaded', flowbite);
+        });
+      }, 0);
+    }
   }
+  
 }
