@@ -10,14 +10,17 @@ import { headersInterceptor } from './core/interceptors/headers/headers.intercep
 import { errorsInterceptor } from './core/interceptors/errors/errors.interceptor';
 import { NgxSpinnerModule } from "ngx-spinner";
 import { loadingInterceptor } from './core/interceptors/loading/loading.interceptor';
+import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 
 export const appConfig: ApplicationConfig = {
   providers: [provideZoneChangeDetection({ eventCoalescing: true }),
      provideRouter(routes), 
+     { provide: LocationStrategy, useClass: HashLocationStrategy },
      provideClientHydration(withEventReplay()),
      provideHttpClient(withFetch() , withInterceptors([headersInterceptor , errorsInterceptor,loadingInterceptor])),
      provideAnimations(),
      provideToastr(),
-     importProvidersFrom( NgxSpinnerModule)
+     importProvidersFrom( NgxSpinnerModule),
+    
     ]
 };
